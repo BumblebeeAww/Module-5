@@ -1,4 +1,4 @@
-name: ci-java
+name: ci
 
 on:
   push:
@@ -13,19 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Проверка исходного кода
+      - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Установка JDK
+      - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           java-version: '11'
       
-      - name: Установка зависимостей
-        run: mvn install
-      
-      - name: Сборка проекта
-        run: mvn clean package
-      
-      - name: Запуск тестов
-        run: mvn test
+      - name: Build with Maven
+        run: mvn clean install     
